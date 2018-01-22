@@ -57,7 +57,7 @@ def post_score(channel):
     print(start)
     brokerMessage = {'Status': 'scored', 'Player': '2', 'Score': 1, 'Data': '0'}
     print("message sent")
-    mqttc.publish("score", brokerMessage)
+    mqttc.publish("score", json.dumps(brokerMessage))
 
 
 def post_speed(channel):
