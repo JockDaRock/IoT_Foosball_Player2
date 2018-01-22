@@ -52,9 +52,9 @@ def data_collect():
 
 def post_score(channel):
     global start
-    start = time.time();
+    start = time.time()
     print("Start time is:")
-    print(start);
+    print(start)
     brokerMessage = {'Status': 'scored', 'Player': '2', 'Score': 1, 'Data': '0'}
     print("message sent")
     mqttc.publish("score", json.dumps(brokerMessage))
@@ -62,9 +62,9 @@ def post_score(channel):
 
 def post_speed(channel):
     global stop
-    stop = time.time();
+    stop = time.time()
     print("Stop time is:")
-    print(stop);
+    print(stop)
     if stop > start:
         elapsed = stop - start
         print("Elapsed time is:")
