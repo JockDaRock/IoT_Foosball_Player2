@@ -30,14 +30,14 @@ stop = 0
 
 
 async def data_collect_ir():
-    GPIO.add_event_detect(ir, GPIO.FALLING, callback=post_score, bouncetime=200)
+    GPIO.add_event_detect(ir, GPIO.BOTH, callback=process_edge, bouncetime=200)
     """while True:
         time.sleep(0)"""
 
 
-async def data_collect_ir2():
+"""async def data_collect_ir2():
     GPIO.add_event_detect(ir2, GPIO.RISING, callback=post_speed, bouncetime=200)
-    """while True:
+    while True:
         time.sleep(0)"""
 
 
@@ -95,7 +95,7 @@ def post_speed(channel):
 if __name__ == '__main__':
     # data_collect()
     loop = asyncio.get_event_loop()
-    tasks = [asyncio.ensure_future(data_collect_ir()), asyncio.ensure_future(data_collect_ir2())]
-    # asyncio.get_event_loop().run_until_complete(data_collect_ir2())
+    # tasks = [asyncio.ensure_future(data_collect_ir()), asyncio.ensure_future(data_collect_ir2())]
+    tasks = [asyncio.get_event_loop().run_until_complete(data_collect_ir())]
     loop.run_forever()
     print("started")
