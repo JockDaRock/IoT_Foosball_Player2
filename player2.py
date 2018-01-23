@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import json
 import paho.mqtt.client as mqtt
 import time
+import asyncio
 
 thread = None
 
@@ -28,16 +29,21 @@ start = 0
 stop = 0
 
 
-"""def data_collect():
+async def data_collect_ir():
     GPIO.add_event_detect(ir, GPIO.FALLING, callback=post_score, bouncetime=200)
+    while True:
+        time.sleep(0)
+
+async def data_collect_ir2():\
     GPIO.add_event_detect(ir2, GPIO.RISING, callback=post_speed, bouncetime=200)
     while True:
-        time.sleep(0)"""
+        time.sleep(0)
 
-def data_collect():
-    GPIO.add_event_detect(ir, GPIO.FALLING, callback=process_edge, bouncetime=50)
+
+"""def data_collect():
+    GPIO.add_event_detect(ir, GPIO.FALLING, callback=process_edge, bouncetime=100)
     while True:
-        pass
+        pass"""
 
 
 def process_edge(channel):
@@ -86,5 +92,7 @@ def post_speed(channel):
 
 
 if __name__ == '__main__':
-    data_collect()
+    # data_collect()
+    asyncio.get_event_loop().run_until_complete(data_collect_ir())
+    asyncio.get_event_loop().run_until_complete(data_collect_ir())
     print("started")
