@@ -94,5 +94,5 @@ def post_speed(channel):
 if __name__ == '__main__':
     # data_collect()
     asyncio.get_event_loop().run_until_complete(data_collect_ir())
-    asyncio.get_event_loop().run_until_complete(data_collect_ir())
+    asyncio.get_event_loop().run_until_complete(data_collect_ir2())
     print("started")
