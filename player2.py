@@ -47,7 +47,7 @@ async def data_collect_ir():
         pass"""
 
 
-def process_edge(channel):
+async def process_edge(channel):
     if GPIO.input(channel):  # test if pin is high
         post_speed(channel)
     else:
