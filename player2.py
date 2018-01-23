@@ -36,6 +36,8 @@ stop = 0
 
 def data_collect():
     GPIO.add_event_detect(ir, GPIO.BOTH, callback=process_edge, bouncetime=200)
+    while True:
+        pass
 
 
 def process_edge(channel):
