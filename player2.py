@@ -34,7 +34,7 @@ async def data_collect_ir():
     while True:
         time.sleep(0)
 
-async def data_collect_ir2():\
+async def data_collect_ir2():
     GPIO.add_event_detect(ir2, GPIO.RISING, callback=post_speed, bouncetime=200)
     while True:
         time.sleep(0)
