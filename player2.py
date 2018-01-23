@@ -30,7 +30,7 @@ stop = 0
 
 
 async def data_collect_ir():
-    GPIO.add_event_detect(ir, GPIO.BOTH, callback=process_edge, bouncetime=200)
+    GPIO.add_event_detect(ir, GPIO.BOTH, callback=process_edge, bouncetime=5)
     """while True:
         time.sleep(0)"""
 
@@ -47,7 +47,7 @@ async def data_collect_ir():
         pass"""
 
 
-async def process_edge(channel):
+def process_edge(channel):
     if GPIO.input(channel):  # test if pin is high
         post_speed(channel)
     else:
