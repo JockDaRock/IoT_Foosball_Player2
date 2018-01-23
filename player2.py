@@ -21,7 +21,7 @@ mqttc = mqtt.Client()
 mqttc.connect(broker_ip)
 mqttc.loop_start()
 
-GPIO.setup(ir, GPIO.IN, GPIO.PUD_DOWN)
+GPIO.setup(ir, GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(ir2, GPIO.IN, GPIO.PUD_DOWN)
 
 start = 0
