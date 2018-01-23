@@ -35,7 +35,7 @@ stop = 0
         time.sleep(0)"""
 
 def data_collect():
-    GPIO.add_event_detect(ir, GPIO.BOTH, callback=process_edge, bouncetime=5)
+    GPIO.add_event_detect(ir, GPIO.BOTH, callback=process_edge, bouncetime=50)
     while True:
         pass
 
