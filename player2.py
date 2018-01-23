@@ -63,9 +63,9 @@ def post_speed(channel):
 
 
 # while GPIO.input(ir)==0:
-#     start = time.time();
+#     start = time.time()
 #     print("Start time is:")
-#     print(start);
+#     print(start)
 
 # while GPIO.input(ir)==1:
 #     print("speedRead is")
