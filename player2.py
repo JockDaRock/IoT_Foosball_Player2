@@ -5,6 +5,12 @@ import time
 
 thread = None
 
+score_topic = "foosball/score"
+speed_topic = "foosball/speed"
+
+# 192.168.195.7 was IR 829 Broker
+broker_ip = "128.107.70.30"  # <--- Please change IP to match the location of your MQTT broker
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -12,8 +18,7 @@ ir = 15
 ir2 = 18
 
 mqttc = mqtt.Client()
-mqttc.connect("128.107.70.30")  # <--- Please change IP to match the location of your MQTT broker
-# 192.168.195.7 was IR 829 Broker
+mqttc.connect(broker_ip)
 mqttc.loop_start()
 
 GPIO.setup(ir, GPIO.IN, GPIO.PUD_DOWN)
@@ -29,26 +34,6 @@ def data_collect():
     while True:
         time.sleep(0)
 
-    """while True:
-
-        time.sleep(0)
-        t1 = time.time()
-        try:
-            channel = GPIO.wait_for_edge(ir,
-                                         GPIO.RISING,
-                                         timeout=5000)
-            if channel != None:
-                rpm = 0
-                brokerMessage = {'Status': 'scored', 'Player': '1', 'Score': 1, 'Data': '0'}
-                print("message sent")
-                mqttc.publish("lights/player1", json.dumps(brokerMessage))
-            else:
-                brokerMessage = {"rpm": 1}
-        except KeyboardInterrupt:
-            connection.close()
-            GPIO.cleanup()
-            sys.exit(0)"""
-
 
 def post_score(channel):
     global start
@@ -57,7 +42,7 @@ def post_score(channel):
     print(start)
     brokerMessage = {'Status': 'scored', 'Player': '2', 'Score': 1, 'Data': '0'}
     print("message sent")
-    mqttc.publish("score", json.dumps(brokerMessage))
+    mqttc.publish(score_topic, json.dumps(brokerMessage))
 
 
 def post_speed(channel):
@@ -74,7 +59,7 @@ def post_speed(channel):
         print("posting speed")
         print(mph)
         brokerMessage = {'Status': 'speed', 'Speed': mph}
-        mqttc.publish("speed", json.dumps(brokerMessage))
+        mqttc.publish(speed_topic, json.dumps(brokerMessage))
 
 
 # while GPIO.input(ir)==0:
