@@ -28,11 +28,21 @@ start = 0
 stop = 0
 
 
-def data_collect():
+"""def data_collect():
     GPIO.add_event_detect(ir, GPIO.FALLING, callback=post_score, bouncetime=200)
     GPIO.add_event_detect(ir2, GPIO.RISING, callback=post_speed, bouncetime=200)
     while True:
-        time.sleep(0)
+        time.sleep(0)"""
+
+def data_collect():
+    GPIO.add_event_detect(ir, GPIO.BOTH, callback=process_edge, bouncetime=200)
+
+
+def process_edge(channel):
+    if GPIO.input(channel):  # test if pin is high
+        post_speed(channel)
+    else:
+        post_score(channel)
 
 
 def post_score(channel):
