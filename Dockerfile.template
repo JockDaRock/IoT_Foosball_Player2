@@ -1,4 +1,4 @@
-FROM resin/raspberrypi3-python
+FROM resin/raspberrypi3-python:3
 
 ENV INITSYSTEM on
 
