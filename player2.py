@@ -10,7 +10,7 @@ score_topic = "foosball/score"
 speed_topic = "foosball/speed"
 
 # 192.168.195.7 was IR 829 Broker
-broker_ip = "128.107.70.30"  # <--- Please change IP to match the location of your MQTT broker
+broker_ip = "192.168.195.7"  # <--- Please change IP to match the location of your MQTT broker
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -31,20 +31,6 @@ stop = 0
 
 async def data_collect_ir():
     GPIO.add_event_detect(ir, GPIO.BOTH, callback=process_edge, bouncetime=5)
-    """while True:
-        time.sleep(0)"""
-
-
-"""async def data_collect_ir2():
-    GPIO.add_event_detect(ir2, GPIO.RISING, callback=post_speed, bouncetime=200)
-    while True:
-        time.sleep(0)"""
-
-
-"""def data_collect():
-    GPIO.add_event_detect(ir, GPIO.FALLING, callback=process_edge, bouncetime=100)
-    while True:
-        pass"""
 
 
 def process_edge(channel):
@@ -79,17 +65,6 @@ def post_speed(channel):
         print(mph)
         brokerMessage = {'Status': 'speed', 'Speed': mph}
         mqttc.publish(speed_topic, json.dumps(brokerMessage))
-
-
-# while GPIO.input(ir)==0:
-#     start = time.time()
-#     print("Start time is:")
-#     print(start)
-
-# while GPIO.input(ir)==1:
-#     print("speedRead is")
-#     print(speedRead)
-#     if speedRead is False:
 
 
 if __name__ == '__main__':
