@@ -74,3 +74,4 @@ if __name__ == '__main__':
     tasks = [asyncio.get_event_loop().run_until_complete(data_collect_ir())]
     loop.run_forever()
     print("started")
+    
