@@ -10,7 +10,7 @@ score_topic = "foosball/score"
 speed_topic = "foosball/speed"
 
 # 192.168.195.7 was IR 829 Broker
-broker_ip = "192.168.195.7"  # <--- Please change IP to match the location of your MQTT broker
+broker_ip = "10.8.182.131"  # <--- Please change IP to match the location of your MQTT broker
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
